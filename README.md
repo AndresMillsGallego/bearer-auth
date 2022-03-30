@@ -10,7 +10,7 @@ We were once again given starter code, this time there was a lot more code and a
 
 PR links can be found at the bottom of this document[^1]
 
-[GitHub Repo](https://github.com/AndresMillsGallego/basic-auth)
+[GitHub Repo](https://github.com/AndresMillsGallego/bearer-auth)
 
 [Heroku Deployed Link](https://andresmills-basic-auth.herokuapp.com/)
 
