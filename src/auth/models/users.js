@@ -40,17 +40,16 @@ const userSchema = (sequelize, DataTypes) => {
   // Bearer AUTH: Validating a token
   model.authenticateToken = async function (token) {
     try {
-      console.log('bearer');
+      
       const parsedToken = jwt.verify(token, SECRET);
       const user = await this.findOne({where: {username: parsedToken.username} });
       if (user) { return user; }
-      throw new Error('User Not Found');
+      // throw new Error('User Not Found');
     } catch (error) {
       
-      throw new Error(error);
+      throw new Error(error.message);
     }
   };
-  console.log(this);
   return model;
 };
 
