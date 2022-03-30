@@ -1,0 +1,27 @@
+'use strict';
+
+const base64 = require('base-64');
+const { users } = require('../models/index.js');
+
+module.exports = async (req, res, next) => {
+
+  // eslint-disable-next-line no-undef
+  if (!req.headers.authorization) { return _authError(); }
+  try {
+
+    let basic = req.headers.authorization;
+    let encodedString = basic.split(' ')[1];
+    let [username, pass] = base64.decode(encodedString).split(':');
+    console.log(encodedString);
+
+    req.user = await users.authenticateBasic(username, pass);
+    if (req.user) {
+      next();
+    } else {
+      res.status(403).send('Invalid Login');
+    }
+  } catch (error) {
+    res.status(403).send('Invalid Login');
+  }
+
+};
