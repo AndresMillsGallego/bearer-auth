@@ -39,8 +39,7 @@ describe('Auth Middleware', () => {
           expect(next).not.toHaveBeenCalled();
           expect(res.status).toHaveBeenCalledWith(403);
         });
-
-    });
+    }); 
 
     it('logs in a user with a proper token', () => {
 

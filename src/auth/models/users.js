@@ -28,13 +28,15 @@ const userSchema = (sequelize, DataTypes) => {
 
   // Basic AUTH: Validating strings (username, password) 
   model.authenticateBasic = async function (username, password) {
-    
-    const user = await this.findOne({ where: { username } });
-    const valid = await bcrypt.compare(password, user.password);
-    if (valid) { return user; }
-    
-    throw new Error('Invalid User');
-    
+    try {
+      const user = await this.findOne({ where: { username } });
+      const valid = await bcrypt.compare(password, user.password);
+      if (valid) { return user; }
+
+    } catch (error) {
+      console.error(error);
+      return error;
+    }
   };
 
   // Bearer AUTH: Validating a token
@@ -46,8 +48,8 @@ const userSchema = (sequelize, DataTypes) => {
       if (user) { return user; }
       // throw new Error('User Not Found');
     } catch (error) {
-      
-      throw new Error(error.message);
+      console.error(error);
+      return error;
     }
   };
   return model;

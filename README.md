@@ -12,7 +12,7 @@ PR links can be found at the bottom of this document[^1]
 
 [GitHub Repo](https://github.com/AndresMillsGallego/bearer-auth)
 
-[Heroku Deployed Link](https://andresmills-basic-auth.herokuapp.com/)
+[Heroku Deployed Link](https://andresmills-bearer-auth.herokuapp.com/)
 
 ![Class 06 UML](./uml-class-06.png)
 
@@ -54,4 +54,4 @@ I also used `JSONWebToken` to generate and use the `JWT` tokens.
 
 ## Pull Requests
 
-[^1]: [Class 06 Pull Request](https://github.com/AndresMillsGallego/basic-auth/pull/1)
+[^1]: [Class 06 Pull Request](https://github.com/AndresMillsGallego/bearer-auth/pull/1)
