@@ -13,6 +13,7 @@ beforeAll(async (done) => {
   await users.create(userInfo.admin);
   done();
 });
+
 afterAll(async (done) => {
   await db.drop();
   done();

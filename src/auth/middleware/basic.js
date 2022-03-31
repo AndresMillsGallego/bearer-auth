@@ -14,13 +14,13 @@ module.exports = async (req, res, next) => {
     let basic = req.headers.authorization;
     let encodedString = basic.split(' ')[1];
     let [username, pass] = base64.decode(encodedString).split(':');
-    console.log(encodedString);
+    console.log(username, pass);
 
     req.user = await users.authenticateBasic(username, pass);
    
     next();
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
     res.status(403).send('Invalid Login');
   }
 

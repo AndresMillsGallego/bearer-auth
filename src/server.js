@@ -20,6 +20,10 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.get('/', (request, response, next) => {
+  response.send('King Snorlax approves and welcomes you to his server');
+});
+
 // Routes
 app.use(authRoutes);
 
