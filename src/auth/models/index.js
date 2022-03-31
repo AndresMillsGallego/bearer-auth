@@ -8,8 +8,10 @@ const DATABASE_URL = process.env.NODE_ENV === 'test' ? 'sqlite::memory:' : proce
 
 const DATABASE_CONFIG = process.env.NODE_ENV === 'production' ? {
   dialectOptions: {
-    // ssl: true,
-    rejectUnauthorized: false,
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
   },
 } : {};
 
