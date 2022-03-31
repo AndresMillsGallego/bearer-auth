@@ -16,7 +16,7 @@ authRouter.post('/signup', async (request, response, next) => {
     };
     response.status(201).json(output);
   } catch (error) {
-    next(error);
+    next(error.message);
   }
 });
 

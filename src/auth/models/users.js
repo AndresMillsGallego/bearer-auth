@@ -12,8 +12,9 @@ const userSchema = (sequelize, DataTypes) => {
     token: {
       type: DataTypes.VIRTUAL,
       // Adds a 15min expiration to the JWT token
+      // , exp: Math.floor(Date.now() / 1000) + (30 * 30)
       get() {
-        return jwt.sign({ username: this.username, exp: Math.floor(Date.now() / 1000) + (30 * 30) }, SECRET); 
+        return jwt.sign({ username: this.username}, SECRET); 
       },
       set(payload) {
         return jwt.sign(payload, SECRET);
@@ -31,11 +32,13 @@ const userSchema = (sequelize, DataTypes) => {
     try {
       const user = await this.findOne({ where: { username } });
       const valid = await bcrypt.compare(password, user.password);
-      if (valid) { return user; }
-
+      if (valid) { 
+        return user; 
+      } else {
+        throw new Error('Invalid User');
+      }
     } catch (error) {
-      console.error(error);
-      return error;
+      throw new Error('Invalid User');
     }
   };
 
@@ -46,10 +49,9 @@ const userSchema = (sequelize, DataTypes) => {
       const parsedToken = jwt.verify(token, SECRET);
       const user = await this.findOne({where: {username: parsedToken.username} });
       if (user) { return user; }
-      // throw new Error('User Not Found');
+      throw new Error('User Not Found');
     } catch (error) {
-      console.error(error);
-      return error;
+      throw new Error('Invalid User');
     }
   };
   return model;

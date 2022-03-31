@@ -6,7 +6,9 @@ const { users } = require('../models/index.js');
 module.exports = async (req, res, next) => {
 
   // eslint-disable-next-line no-undef
-  if (!req.headers.authorization) { return _authError(); }
+  if (!req.headers.authorization) {
+    res.status(403).send('Invalid Login');
+  }
   try {
 
     let basic = req.headers.authorization;
@@ -15,12 +17,10 @@ module.exports = async (req, res, next) => {
     console.log(encodedString);
 
     req.user = await users.authenticateBasic(username, pass);
-    if (req.user) {
-      next();
-    } else {
-      res.status(403).send('Invalid Login');
-    }
+   
+    next();
   } catch (error) {
+    console.log(error);
     res.status(403).send('Invalid Login');
   }
 
