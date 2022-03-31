@@ -1,6 +1,6 @@
 'use strict';
 
-const SECRET = process.env.API_SECRET || 'toes';
+const SECRET = process.env.API_SECRET;
 
 const middleware = require('../../../src/auth/middleware/bearer.js');
 const { users, db } = require('../../../src/auth/models/index.js');
