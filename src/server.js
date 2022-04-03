@@ -32,6 +32,7 @@ app.use(notFound);
 app.use(errorHandler);
 
 module.exports = {
+  // Exports the app (server) and the start function
   server: app,
   start: (port) => {
     app.listen(port, () => {
