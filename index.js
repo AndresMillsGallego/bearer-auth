@@ -13,4 +13,4 @@ db.sync()
 
     // Start the web server
     server.start(PORT);
-  });
+  }).catch(console.log);
