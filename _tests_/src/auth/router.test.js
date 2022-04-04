@@ -1,6 +1,5 @@
 'use strict';
 
-process.env.SECRET = 'toes';
 
 const supertest = require('supertest');
 const server = require('../../../src/server.js').server;
