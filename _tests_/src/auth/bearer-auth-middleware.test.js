@@ -49,7 +49,7 @@ describe('Auth Middleware', () => {
     it('logs in a user with a proper token', () => {
 
       const user = { username: 'admin' };
-      const token = jwt.sign(user, SECRET);
+      const token = jwt.sign(user, process.env.API_SECRET);
 
       req.headers = {
         authorization: `Bearer ${token}`,
